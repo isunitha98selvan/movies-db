@@ -1,4 +1,4 @@
-<?php include "templates/header.php"; ?>
+<?php include "../templates/header.php"; ?>
 
 <form method="post">
 	<label for="username">Username</label>
@@ -9,6 +9,6 @@
 	<input type="submit" name="submit" value="Login">
 </form>
 
-<a href="index.php">Back to home</a>
+<a href="../index.php">Back to home</a>
 
-<?php include "templates/footer.php"; ?>
+<?php include "../templates/footer.php"; ?>
