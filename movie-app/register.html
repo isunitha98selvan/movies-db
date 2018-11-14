@@ -22,6 +22,21 @@
 
 	<link rel="stylesheet" type="text/css" href="CSS/util.css">
 	<link rel="stylesheet" type="text/css" href="CSS/main.css">
+	<script type="text/javascript">
+		function registerUser(){
+		console.log("Registering user")
+		var name = document.getElementById("myForm").elements[0].value;
+		var age =document.getElementById("myForm").elements[1].value;
+		var location=document.getElementById("myForm").elements[2].value;
+		var email=document.getElementById("myForm").elements[3].value;
+		var username=document.getElementById("myForm").elements[4].value;
+		var password=document.getElementById("myForm").elements[5].value;
+		var request_url="http://localhost:8080/login?type=signup&username="+username+"=&sql=insert%20into%20user%20(name,email,username,password,location,reg_date)%20values%20(%27"+name+"%27,%27"+email+"%27,%27"+username+"%27,%27"+password+"%27,%27"+location+"%27,CURDATE())";
+		console.log(name);
+		window.location=request_url	
+		window.location=login.html
+			}
+	</script>
 
 </head>
 <body>
@@ -43,7 +58,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="login.html">
+				<form class="login100-form validate-form" action="login.html" id="myForm">
 					<span class="login100-form-title p-b-26">
 						Sign Up
 					</span>
@@ -55,13 +70,8 @@
 					<form method="POST" id="signup-form" class="signup-form">
 
 					<div class="wrap-input100 validate-input">
-							<input class="input100" type="text" name="firstname">
-							<span class="focus-input100" data-placeholder="First Name"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input">
-							<input class="input100" type="text" name="lastname">
-							<span class="focus-input100" data-placeholder="Last Name"></span>
+							<input class="input100" type="text" name="name" id="firstname">
+							<span class="focus-input100" data-placeholder="Name"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input">
@@ -69,11 +79,21 @@
 							<span class="focus-input100" data-placeholder=Age></span>
 					</div>
 
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="location">
+						<span class="focus-input100" data-placeholder="Location"></span>
+					</div>
+
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100" data-placeholder="Email"></span>
 					</div>
 					
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="Username"></span>
+					</div>
+
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
@@ -82,12 +102,12 @@
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-								<button class="login100-form-btn">
-								Register
-							</button>
+					
+					<div class="wrap-input100 validate-input">
+						<input type="button" class="login100-form-btn" onclick="registerUser()" name="Register">
+						<span class="focus-input100" data-placeholder="Register"></span>
+					</div>
+
 						</div>
 					</div>
 
@@ -113,6 +133,7 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 
 	<script src="JS/main.js"></script>
+
 
 </body>
 </html>
