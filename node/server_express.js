@@ -6,15 +6,16 @@ app.use(cors());
 //sql
 var mysql = require('mysql')
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'sanjay',
-  password : 'san123jay',
+  host     : '10.52.56.55',
+  user     : 'user',
+  password : 'Student@123',
   database : 'movies'
 });
 connection.connect();
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
+
     const query = req.query;
     console.log(query);
     connection.query(query.sql, function (err, rows, fields) {

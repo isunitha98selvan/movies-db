@@ -122,6 +122,20 @@ $(document).ready(function(){
 					//878 = science fiction
 					//53 = thriller
 
+	function validateUser(){
+		var username=document.getElementsByName(username);
+		var password=document.getElementByName(password);
+		console.log(username);
+		console.log(password)
+		var request_url="http://localhost:8080/login?type=login&username="+username+"&sql=select%20*%20from%20user%20where%20username=%27"+username+"%27%20and%20password=%27"+password+"%27";
+		window.location=request_url;
+		}
+
+	function registerUser(){
+		console.log("Registering user")
+		window.location="http://localhost:8080/login?type=signup&username=sunita&sql=insert%20into%20user%20(name,email,username,password,location,reg_date)%20values%20(%27sunita%27,%27sunita@gmail.com%27,%27sunita%27,%27password%27,%27xyz%27,CURDATE())";
+	
+			}
 	function getMoviesByGenre(genre_id){
 		const getMoviesByGenreURL = apiBaseURL + 'genre/' + genre_id + '/movies?api_key=' + apiKey + '&language=en-US&include_adult=false&sort_by=created_at.asc';
 		// console.log(getMoviesByGenreURL);
@@ -182,6 +196,8 @@ $(document).ready(function(){
 	//Reset HTML strings to empty to overwrite with new one!
 	var nowPlayingHTML = '';
 	var genreHTML = '';
+
+	
 
 	$('.navbar-brand').click(function(){
 		getNowPlayingData();
