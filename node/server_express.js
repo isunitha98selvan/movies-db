@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
 
     connection.query('SELECT * from patient', function (err, rows, fields) {
       if (err) throw err
-      console.log('The solution is: ',rows[0]);
+      console.log('The solution is: ',rows[0].name);
       res.end('You\'re in reception..'+rows[0]);
     });
     connection.end();
