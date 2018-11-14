@@ -26,10 +26,16 @@
 		function validateUser (input) {
 		var username = document.getElementById("myForm").elements[0].value;
 		var password= document.getElementById("myForm").elements[1].value;
-		console.log(username);
-		console.log(password);
 		var request_url="http://localhost:8080/login?type=login&username="+username+"&sql=select%20*%20from%20user%20where%20username=%27"+username+"%27%20and%20password=%27"+password+"%27";
-		window.location=request_url;
+		$.getJSON(request_url, function(sqldata){
+			if(sqldata.length==0){
+				document.getElementById("error").innerHTML="Invalid Credentials";
+			}
+			else
+			{
+				window.location="index.html";
+			}
+		});
     }
 	</script>
 
@@ -75,6 +81,7 @@
 
 					<div class="wrap-input100 validate-input">
 					<input type="button" class="login100-form-btn" onclick="validateUser()" name="Login">
+					<div id="error"></div>
 					<span class="focus-input100" data-placeholder="Login"></span>
 					</div>
 

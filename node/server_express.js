@@ -6,9 +6,9 @@ app.use(cors());
 //sql
 var mysql = require('mysql')
 var connection = mysql.createConnection({
-  host     : '10.52.56.55',
-  user     : 'user',
-  password : 'Student@123',
+  host     : 'localhost',
+  user     : 'sanjay',
+  password : 'san123jay',
   database : 'movies'
 });
 connection.connect();
@@ -39,7 +39,7 @@ app.get('/login', function(req, res) {
     {
         connection.query('select * from user where username=?;',[query.username], function (err, rows, fields) {
             if (err) throw err
-            console.log('The solution is: ',rows[0]);
+            console.log('Search is: ',rows,query.username);
             if(rows[0]==undefined)
             {
                 connection.query(query.sql, function (err, rows, fields) {
@@ -50,7 +50,7 @@ app.get('/login', function(req, res) {
                 res.end(JSON.stringify({success:true}));
             }else{
                 console.log('user exists');
-                res.end(JSON.stringify(rows));
+                res.end(JSON.stringify([]));
             }
         });
 
