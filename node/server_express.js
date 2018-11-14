@@ -1,6 +1,8 @@
 var express = require('express');
+var cors=require('cors');
 
 var app = express();
+app.use(cors());
 //sql
 var mysql = require('mysql')
 var connection = mysql.createConnection({
@@ -9,17 +11,16 @@ var connection = mysql.createConnection({
   password : 'san123jay',
   database : 'hospital'
 });
+connection.connect();
 
 app.get('/', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    connection.connect()
+    res.setHeader('Content-Type', 'application/json');
 
     connection.query('SELECT * from patient', function (err, rows, fields) {
       if (err) throw err
-      console.log('The solution is: ',rows[0].name);
-      res.end('You\'re in reception..'+rows[0]);
+      console.log('The solution is: ',rows[0]);
+      res.end(JSON.stringify(rows));
     });
-    connection.end();
 });
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
