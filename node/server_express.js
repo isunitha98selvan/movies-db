@@ -9,24 +9,53 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'sanjay',
   password : 'san123jay',
-  database : 'hospital'
+  database : 'movies'
 });
 connection.connect();
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
 
-    connection.query('SELECT * from patient', function (err, rows, fields) {
+    const query = req.query;
+    console.log(query);
+    connection.query('SELECT * from user;', function (err, rows, fields) {
       if (err) throw err
       console.log('The solution is: ',rows[0]);
       res.end(JSON.stringify(rows));
     });
 });
-app.get('/', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('You\’re in reception. How can I help you?');
-});
+app.get('/login', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    const query = req.query;
+    if(query.type=='login'){
+        console.log(query.type);
+        connection.query(query.sql, function (err, rows, fields) {
+            if (err) throw err
+            console.log('The solution if is: ',rows[0]);
+            res.end(JSON.stringify(rows));
+        });
+    }
+    else 
+    {
+        connection.query('select * from user where username=?;',[query.username], function (err, rows, fields) {
+            if (err) throw err
+            console.log('The solution is: ',rows[0]);
+            if(rows[0]==undefined)
+            {
+                connection.query(query.sql, function (err, rows, fields) {
+                    if (err) throw err
+                    console.log('The solution is: ',rows[0]);
+                });
+                console.log('user created');
+                res.end(JSON.stringify({success:true}));
+            }else{
+                console.log('user exists');
+                res.end(JSON.stringify(rows));
+            }
+        });
 
+    }
+});
 app.get('/basement', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
     res.end('You\’re in the wine cellar. Those bottles are mine!');
@@ -38,3 +67,7 @@ app.use(function(req, res, next){
 });
 
 app.listen(8080);
+
+
+//http://localhost:8080/login?type=login&username=sanjay&sql=select%20*%20from%20user%20where%20username=%27sanjay%27%20and%20password=%27password%27;
+//http://localhost:8080/login?type=signup&username=sunita&sql=insert%20into%20user%20(name,email,username,password,location,reg_date)%20values%20(%27sunita%27,%27sunita@gmail.com%27,%27sunita%27,%27password%27,%27xyz%27,CURDATE());
