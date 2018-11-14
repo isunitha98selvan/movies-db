@@ -17,9 +17,9 @@ app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     const query = req.query;
     console.log(query);
-    connection.query('SELECT * from user;', function (err, rows, fields) {
-      if (err) throw err
-      console.log('The solution is: ',rows[0]);
+    connection.query(query.sql, function (err, rows, fields) {
+      if (err) throw err;
+      console.log('The solution is: ',JSON.stringify(rows));
       res.end(JSON.stringify(rows));
     });
 });
