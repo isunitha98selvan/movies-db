@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	// The base url for all API calls
 	var apiKey=123;
@@ -13,19 +12,20 @@ $(document).ready(function(){
 	//====================== Get "now playing" data on default. ====================
 	//=================== Change results when a genre is clicked on.================
 	//==============================================================================
-	function getNowPlayingData(){
+	function getNowPlayingData(location){
 		$.getJSON(nowPlayingURL, function(nowPlayingData){
 			// var nowdata=[{poster:"https://m.media-amazon.com/images/M/MV5BMjE3MDQ0MTA3M15BMl5BanBnXkFtZTgwMDMwNDY2NTM@._V1_UX67_CR0,0,67,98_AL_.jpg",title:"some movie",overwiew:"A magnificent movie, captivating performances",releaseDate:"29-01-1998",voteaverage:4.5}]
-			console.log(nowPlayingData[0]);
+			// console.log(nowPlayingData[0]);
 			// console.log(nowPlayingData);
 			//we needed to add .results because nowPlayingData is an array.
 			// console.log(nowPlayingData[0],nowPlayingURL);
 			for(let i = 0; i<nowPlayingData.length; i++){
 					var showtime="http://localhost:8080/?sql=select%20*%20from%20theatres;"
 					$.getJSON(showtime, function(showdata){
-						console.log(showdata);
+						// console.log(showdata);
 					var poster = 'http://image.tmdb.org/t/p/w185_and_h278_bestv2/'+nowPlayingData[i]["poster_path"];
-					console.log(showdata);
+					console.log(location);
+					
 
 					var title = nowPlayingData[i]["title"];
 
@@ -104,14 +104,13 @@ $(document).ready(function(){
 		// console.log(getMoviesByGenreURL);
 		$.getJSON(getMoviesByGenreURL, function(nowPlayingData){
 			// var nowdata=[{poster:"https://m.media-amazon.com/images/M/MV5BMjE3MDQ0MTA3M15BMl5BanBnXkFtZTgwMDMwNDY2NTM@._V1_UX67_CR0,0,67,98_AL_.jpg",title:"some movie",overwiew:"A magnificent movie, captivating performances",releaseDate:"29-01-1998",voteaverage:4.5}]
-			console.log(nowPlayingData[0]);
+
 			// console.log(nowPlayingData);
 			//we needed to add .results because nowPlayingData is an array.
 			// console.log(nowPlayingData[0],nowPlayingURL);
 			for(let i = 0; i<nowPlayingData.length; i++){
 					var showtime="http://localhost:8080/?sql=select%20*%20from%20theatres;"
 					$.getJSON(showtime, function(showdata){
-						console.log(showdata);
 					var poster = 'http://image.tmdb.org/t/p/w185_and_h278_bestv2/'+nowPlayingData[i]["poster_path"];
 					// console.log(poster);
 
@@ -270,39 +269,26 @@ $(document).ready(function(){
 		$('#movieGenreLabel').html("Thriller");
 	})
 //location
-
 $('#Ahmedabad').click(function(){
-	location='Ahmedabad';
+	getNowPlayingData('Ahmedabad');
 })
 $('#Bangalore').click(function(){
-	getMoviesByGenre(12);
-	$('#movie-grid').html(genreHTML);
-	$('#movieGenreLabel').html("Adventure");
+	getNowPlayingData('Bangalore');
 })
 $('#Chennai').click(function(){
-	getMoviesByGenre(16);
-	$('#movie-grid').html(genreHTML);
-	$('#movieGenreLabel').html("Animation");
+	getNowPlayingData('Chennai');
 })
 $('#Delhi').click(function(){
-	getMoviesByGenre(35);
-	$('#movie-grid').html(genreHTML);
-	$('#movieGenreLabel').html("Comedy");
+	getNowPlayingData('Delhi');
 })
 $('#Hyderabad').click(function(){
-	getMoviesByGenre(80);
-	$('#movie-grid').html(genreHTML);
-	$('#movieGenreLabel').html("Crime");
+	getNowPlayingData('Hyderabad');
 })
 $('#Kochi').click(function(){
-	getMoviesByGenre(18);
-	$('#movie-grid').html(genreHTML);
-	$('#movieGenreLabel').html("Drama");
+	getNowPlayingData('Kochi');
 })
 $('#Mumbai').click(function(){
-	getMoviesByGenre(10751);
-	$('#movie-grid').html(genreHTML);
-	$('#movieGenreLabel').html("Family");
+	getNowPlayingData('Mumbai');
 })
 
 	//==============================================================================
