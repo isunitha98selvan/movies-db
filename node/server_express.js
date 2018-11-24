@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'sanjay',
   password : 'san123jay',
-  database : 'moviedb'
+  database : 'finaldb'
 });
 connection.connect();
 
@@ -37,7 +37,7 @@ app.get('/login', function(req, res) {
     }
     else 
     {
-        connection.query('select * from user where username=?;',[query.username], function (err, rows, fields) {
+        connection.query('select * from user where user.username=?;',[query.username], function (err, rows, fields) {
             if (err) throw err
             console.log('Search is: ',rows,query.username);
             if(rows[0]==undefined)
