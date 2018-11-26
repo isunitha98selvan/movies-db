@@ -23,7 +23,6 @@ app.get('/', function(req, res) {
     const query = req.query;
     console.log(query);
     connection.query(query.sql, function (err, rows, fields) {
-      if (err) throw err;
       console.log('The solution is: ',JSON.stringify(rows));
       res.end(JSON.stringify(rows));
     });
@@ -35,7 +34,6 @@ app.get('/login', function(req, res) {
     if(query.type=='login'){
         console.log(query.type);
         connection.query(query.sql, function (err, rows, fields) {
-            if (err) throw err
             console.log('The solution if is: ',rows[0]);
             res.end(JSON.stringify(rows));
         });
