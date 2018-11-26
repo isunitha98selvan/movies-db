@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="CSS/util.css">
 	<link rel="stylesheet" type="text/css" href="CSS/main.css">
 	<script type="text/javascript">
+	
 		function validateUser (input) {
 		var username = document.getElementById("myForm").elements[0].value;
 		var password= document.getElementById("myForm").elements[1].value;
@@ -36,9 +37,10 @@
 				window.location="index.html";
 			}
 		});
-    }
+        url = 'index.html?name=' + encodeURIComponent(username);
+    	document.location.href = url;
+	}   
 	</script>
-
 </head>
 <body>
 		<nav class="navbar navbar-inverse">

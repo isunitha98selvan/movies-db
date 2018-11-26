@@ -42,7 +42,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#" class="nowPlaying">Now Playing</a></li>
+        <li><a href="index.html" class="nowPlaying">Now Playing</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genres<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -63,7 +63,7 @@
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location<span class="caret"></span></a>
+          <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#" class="action" id="Ahmedabad">Ahmedabad</a></li>
             <li><a href="#" class="adventure" id="Bangalore">Bangalore</a></li>
@@ -76,7 +76,7 @@
         </li>
 
         <li><a href="login.html" class="Login">Login</a></li>
-        <li><a href="yourReviews.html">Your reviews </a></li>
+        <li><a href="file.html">Your reviews </a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -92,15 +92,21 @@
 </nav>
 	<!-- Displaying the movies -->
 
-	<div class="container">
-		<div class="row">
-      <div class="genreLabel"><h1 id="movieGenreLabel"></h1></div>
-        <!-- I need the h1 to change accordingly depending on what was clicked. -->
-			<div id="movie-grid">
-				 <!-- Jquery get us the movie posters! Need a place to put the poster images -->
-			</div>
-		</div>
-	</div>
+    <form id="myform">
+            Review:<input type="text" id="review" name="review">
+           <input type="button" value="Submit Review" onclick="msg()">
+         </form>
+         
+         <script>
+         function msg() {
+                     var review=document.getElementById("myform").elements[0].value
+                     console.log(review)
+                     url = 'index.html?name=' + encodeURIComponent(review);
+                     document.location.href = url
+                 
+         
+         }
+         </script>
 
 </body>
 </html>

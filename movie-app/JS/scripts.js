@@ -1,8 +1,19 @@
+window.onload = function () {
+	var url = document.location.href,
+		params = url.split('?')[1].split('&'),
+		data = {}, tmp;
+	for (var i = 0, l = params.length; i < l; i++) {
+		 tmp = params[i].split('=');
+		 data[tmp[0]] = tmp[1];
+	}
+	console.log("review=",data.name);
+	var review=data.name;
+  }
+//console.log(data.name);
 $(document).ready(function(){
 	// The base url for all API calls
 	var apiKey=123;
 	var apiBaseURL = 'http://api.themoviedb.org/3/';
-
 	// URL in Authentication. Base URL of image
 	var imageBaseUrl = 'https://image.tmdb.org/t/p/';
 
@@ -58,6 +69,7 @@ $(document).ready(function(){
 			// 							// nowPlayingHTML += '<div class="genre">Genre: '+genre+'</div><br>';
 										nowPlayingHTML += '<div class="overview">' +overview+ '</div><br>';// Put overview in a separate div to make it easier to style
 										nowPlayingHTML += '<div class="rating">Rating: '+voteAverage+ '/10</div><br>';
+										nowPlayingHTML += '<div class="linkToTrailer"><a href="reviews.html"><span class="glyphicon glyphicon-play"></span>&nbspWrite review</a>' + '</div><br>';	
 										nowPlayingHTML += '<div class="rating">Theatre Name: '+showdata[0]["theatreName"]+ '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
@@ -145,6 +157,7 @@ $(document).ready(function(){
 			// 							// nowPlayingHTML += '<div class="genre">Genre: '+genre+'</div><br>';
 										nowPlayingHTML += '<div class="overview">' +overview+ '</div><br>';// Put overview in a separate div to make it easier to style
 										nowPlayingHTML += '<div class="rating">Rating: '+voteAverage+ '/10</div><br>';
+										nowPlayingHTML +=  '<div class="rating">Review: '+voteAverage+ '</div><br>';
 										nowPlayingHTML += '<div class="rating">Theatre Name: '+showdata[0]["tname"] + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
@@ -353,6 +366,8 @@ $('#Mumbai').click(function(){
 			// 							// nowPlayingHTML += '<div class="genre">Genre: '+genre+'</div><br>';
 										nowPlayingHTML += '<div class="overview">' +overview+ '</div><br>';// Put overview in a separate div to make it easier to style
 										nowPlayingHTML += '<div class="rating">Rating: '+voteAverage+ '/10</div><br>';
+										nowPlayingHTML += '<div class="rating">Review: '+voteAverage+ '</div><br>';
+
 										nowPlayingHTML += '<div class="rating">Theatre Name: '+showdata[0]["tname"] + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
