@@ -114,7 +114,7 @@ getJSON('http://localhost:8080/?sql=select%20*%20from%20userReview;').then(funct
     console.log(data[0].movieName)
     console.log(data[0].review)
     //alert('Your Json result is:  ' + data.result); //you can comment this, i used it to debug
-
+    //loop through this
     document.getElementById("movie").innerHTML = data[0].movieName; //display the result in an HTML element
     document.getElementById("review").innerHTML = data[0].review;
 }, function(status) { //error detection....

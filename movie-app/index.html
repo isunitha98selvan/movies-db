@@ -74,7 +74,16 @@
             <li><a href="#" class="family" id="Mumbai">Mumbai</a></li>
           </ul>
         </li>
-
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="action" id="English">English</a></li>
+            <li><a href="#" class="adventure" id="Hindi">Hindi</a></li>
+            <li><a href="#" class="animation" id="Tamil">Tamil</a></li>
+            <li><a href="#" class="comedy" id="Telugu">Telugu</a></li>
+          </ul>
+        </li>
+        
         <li><a href="login.html" class="Login">Login</a></li>
         <li><a href="yourReviews.html">Your reviews </a></li>
 
@@ -91,8 +100,16 @@
   </div>
 </nav>
 	<!-- Displaying the movies -->
-
-	<div class="container">
+  <div class="container" id="nowparent">
+		<div class="row">
+      <div class="genreLabel1"><h1 id="movieGenreLabel1" style="color:rgb(250, 221, 221)"></h1></div>
+        <!-- I need the h1 to change accordingly depending on what was clicked. -->
+			<div id="movie-grid1">
+				 <!-- Jquery get us the movie posters! Need a place to put the poster images -->
+			</div>
+		</div>
+	</div>
+	<div class="container" >
 		<div class="row">
       <div class="genreLabel"><h1 id="movieGenreLabel"></h1></div>
         <!-- I need the h1 to change accordingly depending on what was clicked. -->
@@ -100,7 +117,7 @@
 				 <!-- Jquery get us the movie posters! Need a place to put the poster images -->
 			</div>
 		</div>
-	</div>
+  </div>
 
 </body>
 </html>
