@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'sanjay',
   password : 'san123jay',
-  database : 'finaldb'
+  database : 'new'
 });
 connection.connect();
 

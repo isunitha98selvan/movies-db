@@ -23,6 +23,26 @@
 	<link rel="stylesheet" type="text/css" href="CSS/util.css">
 	<link rel="stylesheet" type="text/css" href="CSS/main.css">
 	<script type="text/javascript">
+		function validateEmail(emailField){
+        	var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+			if (reg.test(emailField.value) == false) 
+			{
+				// alert('Invalid Email Address');
+				return false;
+			}
+
+        	return true;
+		}
+		function ValidateEmail(mail) 
+		{
+			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+			{
+				return (true)
+			}
+				alert("You have entered an invalid email address!")
+				return (false)
+		}
 		function registerUser(){
 		console.log("Registering user")
 		var name = document.getElementById("myForm").elements[0].value;
@@ -31,6 +51,22 @@
 		var email=document.getElementById("myForm").elements[3].value;
 		var username=document.getElementById("myForm").elements[4].value;
 		var password=document.getElementById("myForm").elements[5].value;
+		if(age<1){
+			document.getElementById("error").innerHTML="Invalid Age";
+			return;
+		}
+		if(name.length<1){
+			document.getElementById("error").innerHTML="Invalid Name";
+			return;
+		}
+		if(location.length<1){
+			document.getElementById("error").innerHTML="Invalid location";
+			return;
+		}
+		if(validateEmail(email)==false){
+			document.getElementById("error").innerHTML="Invalid email";
+			return;
+		}
 		var request_url="http://localhost:8080/login?type=signup&username="+username+"&sql=insert%20into%20user%20(name,email,username,password,location,reg_date)%20values%20(%27"+name+"%27,%27"+email+"%27,%27"+username+"%27,%27"+password+"%27,%27"+location+"%27,CURDATE())";
 			$.getJSON(request_url, function(sqldata){
 				console.log(sqldata);
@@ -57,7 +93,7 @@
 					  <span class="icon-bar"></span>
 					  <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html">Popcorn Bits Cinemas</a>
+					<a class="navbar-brand" href="index.html">Movies DB</a>
 				  </div>
 				</div>
 		</nav>
@@ -82,7 +118,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input">
-							<input class="input100" type="text" name="age">
+							<input class="input100" type="number" name="age">
 							<span class="focus-input100" data-placeholder=Age></span>
 					</div>
 
