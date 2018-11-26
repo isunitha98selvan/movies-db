@@ -77,20 +77,19 @@
 
         <li><a href="login.html" class="Login">Login</a></li>
         <li><a href="yourReviews.html">Your reviews </a></li>
-  
-        <p style="color:white">Movie Name: 
-        <div style="color:white" id ="movie"></div>
-        </p>
-
-        <p style="color:white">User Review:
-        <div style="color:white" id ="review"></div>
-        </p>
-        </form>
+      </form>
         
-      </ul>
-    </div>
+    </ul>
   </div>
+</div>
 </nav>
+        <table cellspacing="10" style="color: white">
+            <tr>
+                <th>Movie Name </th>
+                <th>Review</th>
+            </tr>
+        </table>
+      
 
 <script>
   var getJSON = function(url) {
@@ -113,10 +112,19 @@
 getJSON('http://localhost:8080/?sql=select%20*%20from%20userReview;').then(function(data) {
     console.log(data[0].movieName)
     console.log(data[0].review)
+    console.log(data)
     //alert('Your Json result is:  ' + data.result); //you can comment this, i used it to debug
     //loop through this
-    document.getElementById("movie").innerHTML = data[0].movieName; //display the result in an HTML element
-    document.getElementById("review").innerHTML = data[0].review;
+    var tr;
+        for (var i = 0; i < data.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + data[i].movieName + "</td>");
+            tr.append("<td>" + data[i].review + "</td>");
+            $('table').append(tr);
+        }
+
+    //document.getElementById("movie").innerHTML = data[0].movieName; //display the result in an HTML element
+    //document.getElementById("review").innerHTML = data[0].review;
 }, function(status) { //error detection....
   alert('Something went wrong.');
 });
