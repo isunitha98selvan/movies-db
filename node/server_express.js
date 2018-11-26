@@ -6,12 +6,16 @@ app.use(cors());
 //sql
 var mysql = require('mysql')
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'sanjay',
-  password : 'san123jay',
-  database : 'new'
+  host     : '10.52.56.55',
+  user     : 'user',
+  password : 'Student@123',
+  database : 'movies'
 });
-connection.connect();
+
+connection.connect()
+console.log("Accessed")
+
+//app.use(express.static('movie-app'))
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
@@ -19,18 +23,17 @@ app.get('/', function(req, res) {
     const query = req.query;
     console.log(query);
     connection.query(query.sql, function (err, rows, fields) {
-      if (err) throw err;
       console.log('The solution is: ',JSON.stringify(rows));
       res.end(JSON.stringify(rows));
     });
 });
+
 app.get('/login', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     const query = req.query;
     if(query.type=='login'){
         console.log(query.type);
         connection.query(query.sql, function (err, rows, fields) {
-            if (err) throw err
             console.log('The solution if is: ',rows[0]);
             res.end(JSON.stringify(rows));
         });
@@ -56,6 +59,13 @@ app.get('/login', function(req, res) {
 
     }
 });
+
+ 
+app.post('/route', function(req,res){
+	let inputContent = req.body.textField;
+	console.log(inputContent);
+});
+
 app.get('/basement', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
     res.end('You\’re in the wine cellar. Those bottles are mine!');

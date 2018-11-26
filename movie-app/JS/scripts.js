@@ -1,4 +1,16 @@
+
+//console.log(data.name);
 $(document).ready(function(){
+<<<<<<< HEAD
+	// The base url for all API calls
+	var apiKey=123;
+	var apiBaseURL = 'http://api.themoviedb.org/3/';
+	// URL in Authentication. Base URL of image
+	var imageBaseUrl = 'https://image.tmdb.org/t/p/';
+
+	// const nowPlayingURL = apiBaseURL + 'movie/now_playing?api_key=' + apiKey;
+=======
+>>>>>>> 64a7236a8109a6203c57d950c98b07bed4680897
 	const nowPlayingURL='http://localhost:8080/?sql=select%20*%20from%20now_showing;'
 	function getNowPlayingData(location){
 		$.getJSON(nowPlayingURL, function(nowPlayingData){
@@ -52,7 +64,12 @@ $(document).ready(function(){
 										nowPlayingHTML += '<div class="overview"><b>review:</b>' +description+ '</div><br>';
 										nowPlayingHTML += '<div class="overview"><b>cast :</b>' +cast1+ '<br>'+cast2+'<br>'+cast3+'</div><br>';
 										nowPlayingHTML += '<div class="rating">Rating: '+voteAverage+ '/10</div><br>';
+<<<<<<< HEAD
+										nowPlayingHTML += '<div class="linkToTrailer"><a href="reviews.html"><span class="glyphicon glyphicon-play"></span>&nbspWrite review</a>' + '</div><br>';	
+										nowPlayingHTML += '<div class="rating">Theatre Name: '+showdata[0]["theatreName"]+ '</div>';
+=======
 										nowPlayingHTML += '<div class="rating">Theatre Name: '+theatre+ '</div>';
+>>>>>>> 64a7236a8109a6203c57d950c98b07bed4680897
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">5:30 PM' + '</div>';
@@ -278,6 +295,7 @@ $(document).ready(function(){
 										nowPlayingHTML += '<div class="overview"><b>review:</b>' +description+ '</div><br>';
 										nowPlayingHTML += '<div class="overview"><b>cast :</b>' +cast1+ '<br>'+cast2+'<br>'+cast3+'</div><br>';
 										nowPlayingHTML += '<div class="rating">Rating: '+voteAverage+ '/10</div><br>';
+										nowPlayingHTML +=  '<div class="rating">Review: '+voteAverage+ '</div><br>';
 										nowPlayingHTML += '<div class="rating">Theatre Name: '+showdata[0]["tname"] + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
@@ -562,6 +580,8 @@ $('#Telugu').click(function(){
 										nowPlayingHTML += '<div class="overview"><b>review:</b>' +description+ '</div><br>';
 										nowPlayingHTML += '<div class="overview"><b>cast :</b>' +cast1+ '<br>'+cast2+'<br>'+cast3+'</div><br>';
 										nowPlayingHTML += '<div class="rating">Rating: '+voteAverage+ '/10</div><br>';
+										nowPlayingHTML += '<div class="rating">Review: '+voteAverage+ '</div><br>';
+
 										nowPlayingHTML += '<div class="rating">Theatre Name: '+showdata[0]["tname"] + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
 										nowPlayingHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
