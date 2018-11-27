@@ -2,9 +2,46 @@
 <html>
 <head>
 	
-	<title>Movie App</title>
+  <title>Movie App</title>
+  <style>
+  input[type=text] {
+    border: 2px solid red;
+    border-radius: 4px;
+    width: 70%;
+    padding: 3px 10px;
+    margin: 5px 0;
+    margin-left: 30px;
+    box-sizing: border-box;
+    color: black;
+    background-color: white}
+  #mform{
+    font: outline;
+    margin-left: 100px;
+    margin-top: 100px;
+      
+} 
+  #myform{
+   color: white;
+   font-size: 20px;
+    
+  }
+  #rating{
+    color: black;
+  }
+  h1{
+    color: rgb(185, 166, 166);
+    margin-left: 100px;
+  }
+  #btn{
+    color: black;
+    border-block-end-color: blue;
+    border-block-end-width: 3px;
+    
+    height: 35px;
+  }
 
-	<!-- Latest compiled and minified CSS -->
+</style>
+  	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -17,8 +54,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- CUSTOM JS -->
-  <script type="text/javascript" src="JS/scripts.js"></script>
+	<script type="text/javascript" src="JS/scripts.js"></script>
   
 
 </head>
@@ -76,7 +112,7 @@
         </li>
 
         <li><a href="login.html" class="Login">Login</a></li>
-        <li><a href="yourReviews.html">Your reviews </a></li>
+        <li><a href="file.html">Your reviews </a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -91,22 +127,28 @@
   </div>
 </nav>
 	<!-- Displaying the movies -->
-
-    <form id="myform">
-            Review:<input type="text" id="review" name="review">
-           <input type="button" value="Submit Review" onclick="msg()">
+  <h1>Write your Review!</h1>
+  <div id="mform">
+    <form id="myform" >
+            Movie Name: <input type="text" id="movieName" name="review">
+           <br>
+           <br>
+           Review: <input type="text" id="review" name="review">
+           <br>
+           <br>
+          <button type='button' onclick="msg()">Submit</button>
          </form>
-         
+        </div>
          <script>
          function msg() {
-                     var review=document.getElementById("myform").elements[0].value
-                     console.log(review)
-                     url = 'index.html?name=' + encodeURIComponent(review);
-                     document.location.href = url
-                 
-         
-         }
-         </script>
-
+                    url ='http://localhost:8080/?sql=insert into userReview values(\"' + document.getElementById("myform").elements[0].value +'\",\"'+document.getElementById("myform").elements[1].value + '\");';
+                    $.getJSON(url, function(sqldata){
+                console.log(sqldata);
+                window.location.href="index.html";
+            });
+        }
+        </script>
+  
+  
 </body>
 </html>
